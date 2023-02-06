@@ -1,0 +1,4 @@
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\90\MonoAndroid,Version=v9.0.AssemblyAttributes.cs
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\90\build.props
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\90\adb.props
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\90\AppDoHotel.csproj.AssemblyReference.cache
