@@ -3,22 +3,34 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 using Android.OS;
+using System.Threading;
 namespace AppDoHotel
 {
     [Activity(Label = "Controle de Pragas 1.0", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        #region Variaveis da tela Login
+
         // Instancia os ImageView
-        ImageView ImgLogo, ImgUsername, ImgPassword, ImgAcesso;
+        ImageView ImgLogo, ImgUsername, ImgPassword;
 
         // Instancia os EditText
         EditText EdtUsername, EdtPassword;
 
         // Instancia os Buttons
-        Button BtnLogin;
+        Button BtnLogin, BtnCadastrar;
 
-        // Instancia dos TextViews
-        TextView TxtAcesso, TxtUsuario;
+        #endregion
+
+        #region Variaveis da tela de Cadastro
+
+        ImageView ImgNomeCadastro, ImgCargoCadastro, ImgUsuarioCadastro, ImgSenhaCadastro, ImgLogoCadastro;
+
+        EditText EdtNomeCadastro, EdtCargoCadastro, EdtUsuarioCadastro, EdtSenhaCadastro;
+
+        Button BtnRealizarCadastro, BtnCancelarCadastro;
+
+        #endregion
 
         //Inicia o evento para criar aplicativos
         protected override void OnCreate(Bundle bundle)
@@ -34,14 +46,14 @@ namespace AppDoHotel
 
             ExibeTelaLogin();
 
-        
+
         }
 
         #region Telas
 
         private void ExibeTelaLogin()
         {
-            
+
             // Chama a tela Login
             SetContentView(Resource.Layout.Main);
 
@@ -52,15 +64,13 @@ namespace AppDoHotel
             ImgLogo = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgLogo);
             ImgUsername = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgUsername);
             ImgPassword = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgPassword);
-            ImgAcesso = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgAcesso);
+
 
             // EditText
             EdtUsername = FindViewById<Android.Widget.EditText>(Resource.Id.EdtUsername);
             EdtPassword = FindViewById<Android.Widget.EditText>(Resource.Id.EdtPassword);
 
-            // TextView
-            TxtAcesso = FindViewById<Android.Widget.TextView>(Resource.Id.TxtAcesso);
-            TxtUsuario = FindViewById<Android.Widget.TextView>(Resource.Id.TxtUsuario);
+
 
             // Limpa os campos Usuario e senha e solicita o foco no campo usuario.
             Limpar();
@@ -68,12 +78,13 @@ namespace AppDoHotel
 
             // Button
             BtnLogin = FindViewById<Android.Widget.Button>(Resource.Id.BtnLogin);
+            BtnCadastrar = FindViewById<Android.Widget.Button>(Resource.Id.BtnCadastrar);
 
             // Relacionando as variaveis ImageView com os arquivos de imagem.png
             ImgLogo.SetImageResource(Resource.Drawable.logo);
             ImgUsername.SetImageResource(Resource.Drawable.usuarios);
             ImgPassword.SetImageResource(Resource.Drawable.senha);
-            ImgAcesso.SetImageResource(Resource.Drawable.negado);
+
 
             #endregion
 
@@ -81,13 +92,77 @@ namespace AppDoHotel
             #region Event
 
             BtnLogin.Click += BtnLogin_Click;
+            BtnCadastrar.Click += BtnCadastrar_Click;
 
             #endregion
         }
 
+        private void ExibeTelaCadastro()
+        {
+
+            // Chama a tela Login
+            SetContentView(Resource.Layout.Cadastro);
+
+            // Instancia os elementos da tela
+            #region Instancias
+
+            // ImageView
+            ImgLogoCadastro = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgLogoCadastro);
+            ImgNomeCadastro = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgNomeCadastro);
+            ImgCargoCadastro = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgCargoCadastro);
+            ImgUsuarioCadastro = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgUsuarioCadastro);
+            ImgSenhaCadastro = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgSenhaCadastro);
+
+            // EditText
+            EdtNomeCadastro = FindViewById<Android.Widget.EditText>(Resource.Id.EdtNomeCadastro);
+            EdtCargoCadastro = FindViewById<Android.Widget.EditText>(Resource.Id.EdtCargoCadastro);
+            EdtUsuarioCadastro = FindViewById<Android.Widget.EditText>(Resource.Id.EdtUsuarioCadastro);
+            EdtSenhaCadastro = FindViewById<Android.Widget.EditText>(Resource.Id.EdtSenhaCadastro);
+
+
+
+            // Button
+            BtnRealizarCadastro = FindViewById<Android.Widget.Button>(Resource.Id.BtnRealizarCadastro);
+            BtnCancelarCadastro = FindViewById<Android.Widget.Button>(Resource.Id.BtnCancelarCadastro);
+
+            // Relacionando as variaveis ImageView com os arquivos de imagem.png
+            ImgLogoCadastro.SetImageResource(Resource.Drawable.add_user);
+            ImgNomeCadastro.SetImageResource(Resource.Drawable.name);
+            ImgCargoCadastro.SetImageResource(Resource.Drawable.sacola);
+            ImgUsuarioCadastro.SetImageResource(Resource.Drawable.usuario);
+            ImgSenhaCadastro.SetImageResource(Resource.Drawable.padlock);
+
+            #endregion
+
+            // Habilita os eventos dos botões
+            #region Event
+
+            BtnRealizarCadastro.Click += BtnRealizarCadastro_Click;
+            BtnCancelarCadastro.Click += BtnCancelarCadastro_Click;
+
+
+
+            #endregion
+        }
+
+
         #endregion
 
         #region Events Functions
+        private void BtnCancelarCadastro_Click(object sender, EventArgs e)
+        {
+            ExibeTelaLogin();
+        }
+
+        private void BtnRealizarCadastro_Click(object sender, EventArgs e)
+        {
+            ValidaCadastro();
+        }
+
+        private void BtnCadastrar_Click(object sender, EventArgs e)
+        {
+            ExibeTelaCadastro();
+        }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
@@ -97,7 +172,7 @@ namespace AppDoHotel
         #endregion
 
         // Serve para se conectar com o banco.
-        
+
         private void Limpar()
         {
 
@@ -107,13 +182,109 @@ namespace AppDoHotel
 
         }
 
+
+        // Função para validar cadastro
+        private void ValidaCadastro()
+        {
+            if (String.IsNullOrWhiteSpace(EdtNomeCadastro.Text))
+            {
+                EdtNomeCadastro.Text = "";
+                // Caso o campo EdtUsername esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
+                Toast.MakeText(Application.Context, "Preencha o Nome", ToastLength.Short).Show();
+                // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
+                EdtNomeCadastro.RequestFocus();
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(EdtCargoCadastro.Text))
+            {
+                EdtCargoCadastro.Text = "";
+                // Caso o campo EdtUsername esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
+                Toast.MakeText(Application.Context, "Preencha o Cargo", ToastLength.Short).Show();
+                // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
+                EdtCargoCadastro.RequestFocus();
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(EdtUsuarioCadastro.Text))
+            {
+                EdtUsuarioCadastro.Text = "";
+                // Caso o campo EdtUsername esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
+                Toast.MakeText(Application.Context, "Preencha o Usuario", ToastLength.Short).Show();
+                // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
+                EdtUsuarioCadastro.RequestFocus();
+                return;
+            }
+
+            if (String.IsNullOrWhiteSpace(EdtSenhaCadastro.Text))
+            {
+                EdtSenhaCadastro.Text = "";
+                // Caso o campo EdtUsername esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
+                Toast.MakeText(Application.Context, "Preencha a Senha", ToastLength.Short).Show();
+                // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
+                EdtSenhaCadastro.RequestFocus();
+                return;
+            }
+            try
+            {
+
+                SQLiteDB db = new SQLiteDB();
+
+
+                SQLiteDB.Usuarios user = db.GetUsuario(EdtNomeCadastro.Text.Trim());
+                if (user == null)
+                {
+                    try
+                    {
+
+                        SQLiteDB.Usuarios newuser = new SQLiteDB.Usuarios();
+                        newuser.Nome = EdtNomeCadastro.Text.Trim();
+                        newuser.Cargo = EdtCargoCadastro.Text.Trim();
+                        newuser.Usuario = EdtUsuarioCadastro.Text.Trim();
+                        newuser.Senha = EdtSenhaCadastro.Text.Trim();
+                        db.InsertUsuario(newuser);
+                        Toast.MakeText(Application.Context, "Usuario criado com sucesso!", ToastLength.Long).Show();
+                        Thread.Sleep(2000);
+                        
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        Toast.MakeText(Application.Context, "Usuairo não inserido!!! " + ex.Message, ToastLength.Long).Show();
+                        Thread.Sleep(2000);
+                        return;
+                    }
+                }
+                else
+                {
+                    Toast.MakeText(Application.Context, "Nome de usuario em uso, escolha outro nome de usuario!", ToastLength.Long).Show();
+                    EdtUsuarioCadastro.Text = "";
+                    EdtUsuarioCadastro.RequestFocus();
+                    Thread.Sleep(2000);
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                Toast.MakeText(Application.Context, "erro: a conexão falhou " + ex.Message,ToastLength.Long).Show();
+                Thread.Sleep(2000);
+                return;
+            }
+
+
+        }
+
         // Função para validar o login.
         private void ValidaLogin()
         {
 
             // Verifica se o campo EdtUsername está vazio.
-            if (EdtUsername.Text.ToString().Trim() == "")
+            if (String.IsNullOrWhiteSpace(EdtUsername.Text))
             {
+                EdtUsername.Text = "";
                 // Caso o campo EdtUsername esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
                 Toast.MakeText(Application.Context, "Preencha o Usuário", ToastLength.Short).Show();
                 // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
@@ -122,8 +293,9 @@ namespace AppDoHotel
 
             }
             // Verifica se o campo EdtPassword está vazio.
-            if (EdtPassword.Text.ToString().Trim() == "")
+            if (String.IsNullOrWhiteSpace(EdtPassword.Text))
             {
+                EdtPassword.Text = "";
                 // Caso o campo EdtPassword esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
                 Toast.MakeText(Application.Context, "Preencha o Senha", ToastLength.Short).Show();
                 // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
@@ -135,28 +307,34 @@ namespace AppDoHotel
             try
             {
 
-                var sq = new SQLiteDB();
-                var user = sq.GetUser(EdtUsername.Text, EdtPassword.Text);
+                var db = new SQLiteDB();
+                var user = db.GetUsuario(EdtUsername.Text, EdtPassword.Text);
                 if (user != null)
                 {
-                    ImgAcesso.SetImageResource(Resource.Drawable.certo);
-                    TxtUsuario.Text = user.Username;
-                    TxtAcesso.Text = user.Nivel;
-                    Toast.MakeText(Application.Context, "Logado com Sucesso", ToastLength.Long);
+
+
+                    Toast.MakeText(Application.Context, "Logado com Sucesso", ToastLength.Long).Show();
+                    //Intent para passar parametros por activity
                     EdtUsername.Text = "";
                     EdtPassword.Text = "";
-                    
-                    return;
+                    Thread.Sleep(1000);
+
+                    var tela = new Intent(this, typeof(Menu));
+                    tela.PutExtra("Nome", user.Nome);
+                    tela.PutExtra("Cargo", user.Cargo);
+                    StartActivity(tela);
+
+
 
 
                 }
                 else
                 {
-                    Toast.MakeText((Context)Resource.Layout.secundario, "Usuario não cadastrado", ToastLength.Long);
+                    Toast.MakeText((Context)Resource.Layout.secundario, "Usuario não cadastrado", ToastLength.Long).Show();
                     Limpar();
 
-                    ImgAcesso.SetImageResource(Resource.Drawable.negado);
-                    
+
+
                     return;
 
                 }
@@ -166,7 +344,7 @@ namespace AppDoHotel
             catch (Exception ex)
             {
 
-                Toast.MakeText(Application.Context, "erro: "+ ex.Message, ToastLength.Long);
+                Toast.MakeText(Application.Context, "erro: " + ex.Message, ToastLength.Long);
                 return;
             }
         }

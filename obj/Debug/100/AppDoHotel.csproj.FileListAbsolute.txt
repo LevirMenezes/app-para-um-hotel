@@ -323,7 +323,6 @@ C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_ConvertResourcesC
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_GenerateJavaStubs.stamp
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\login.psd
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\usuarios.png
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\logo.png
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\senha.png
@@ -344,4 +343,12 @@ C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\lp\66\jl\files.cache
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\lp\68\jl\files.cache
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\lp\71\jl\files.cache
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\assets\SQLite-net.dll
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\cadastro.xml
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\add_user.png
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\name.png
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\padlock.png
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\sacola.png
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\usuario.png
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\menu.xml
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\src\crc64d1251ba317f1a24e\Menu.java
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\AppDoHotel.csproj.AssemblyReference.cache

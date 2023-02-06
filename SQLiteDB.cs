@@ -15,34 +15,48 @@ namespace AppDoHotel
     public partial class SQLiteDB
     {
         //database path
-        private readonly string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "MyDB4.db3");
+        private readonly string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myhotelapp.db");
         public SQLiteDB()
         {
-            //Creating database, if it doesn't already exist 
-            if (!File.Exists(dbPath))
-            {
-                var db = new SQLiteConnection(dbPath);
+            try
+                {
+                //Creating database, if it doesn't already exist 
+                if (!File.Exists(dbPath))
+                {
+                    var db = new SQLiteConnection(dbPath);
 
-                db.CreateTable<Cargos>();
-                db.CreateTable<Detalhes_Vendas>();
-                db.CreateTable<Fornecedores>();
-                db.CreateTable<Funcionarios>();
-                db.CreateTable<Gastos>();
-                db.CreateTable<Hospedes>();
-                db.CreateTable<Movimentacoes>();
-                db.CreateTable<Novo_Servico>();
-                db.CreateTable<Ocupacoes>();
-                db.CreateTable<Produtos>();
-                db.CreateTable<Quartos>();
-                db.CreateTable<Reservas>();
-                db.CreateTable<Servicos>();
-                db.CreateTable<Usuarios>();
-                db.CreateTable<Vendas>();
-                
+                    
+                }
+                else
+                {
+                    var db = new SQLiteConnection(dbPath);
+                    db.CreateTable<Cargos>();
+                    db.CreateTable<Detalhes_Vendas>();
+                    db.CreateTable<Fornecedores>();
+                    db.CreateTable<Funcionarios>();
+                    db.CreateTable<Gastos>();
+                    db.CreateTable<Hospedes>();
+                    db.CreateTable<Movimentacoes>();
+                    db.CreateTable<Novo_Servico>();
+                    db.CreateTable<Ocupacoes>();
+                    db.CreateTable<Produtos>();
+                    db.CreateTable<Quartos>();
+                    db.CreateTable<Reservas>();
+                    db.CreateTable<Servicos>();
+                    db.CreateTable<Usuarios>();
+                    db.CreateTable<Vendas>();
+                }
 
-                
-                //  db.CreateTable<Students>();
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                
+
+                
+            
         }
 
 
@@ -155,16 +169,16 @@ namespace AppDoHotel
 
         #endregion
 
-        public Users GetUser(string username, string password)
+        public Usuarios GetUsuario(string usuario, string senha)
         {
             var db = new SQLiteConnection(dbPath);
             Console.WriteLine("Reading data From Table");
-            var table = db.Table<Users>();
+            var table = db.Table<Usuarios>();
             try
             {
                 foreach (var s in table)
                 {
-                    if (string.Equals(s.Username, username) && string.Equals(s.Password, password))
+                    if (string.Equals(s.Usuario, usuario) && string.Equals(s.Senha, senha))
                         return s;
                 }
                 return null;
@@ -176,16 +190,16 @@ namespace AppDoHotel
         }
 
         
-        public Users GetUser(string username)
+        public Usuarios GetUsuario(string username)
         {
             var db = new SQLiteConnection(dbPath);
             Console.WriteLine("Reading data From Table");
-            var table = db.Table<Users>();
+            var table = db.Table<Usuarios>();
             try
             {
                 foreach (var s in table)
                 {
-                    if (string.Equals(s.Username, username))
+                    if (string.Equals(s.Usuario, username))
                         return s;
                 }
                 return null;
@@ -197,10 +211,10 @@ namespace AppDoHotel
         }
 
         
-        public void UpdateUser(Users user)
+        public void UpdateUsuario(Usuarios usuarios)
         {
             var db = new SQLiteConnection(dbPath);
-            db.Update(user);
+            db.Update(usuarios);
         }
 
         public string GetAllUsers()
@@ -209,12 +223,12 @@ namespace AppDoHotel
             var db = new SQLiteConnection(dbPath);
             
             Console.WriteLine("Reading data From Table");
-            var table = db.Table<Users>();
+            var table = db.Table<Usuarios>();
             try
             {
                 foreach (var s in table)
                     
-                    data += s.UId + "\t" + s.Username + "\t" + s.Password + "\t" + s.Status + "\t" + s.Nivel + "\n";
+                    data += s.UsuarioId + "\t" + s.Usuario + "\t" + s.Senha + "\t" + s.Nome + "\t" + s.Cargo + "\t" + s.Data + "\n";
                 return data;
             }
             catch
@@ -224,20 +238,26 @@ namespace AppDoHotel
         }
 
 
-        [Table("Users")]
-        public class Users
+        [Table("Usuarios")]
+        public class Usuarios
         {
-            [PrimaryKey, AutoIncrement, Column("_uid")]
-            public int UId { get; set; }
-            [MaxLength(3)]
-            public string Username { get; set; }
-            [MaxLength(8)]
-            public string Password { get; set; }
-            [MaxLength(10)]
-            public string Status { get; set; }
-            [MaxLength(0)]
-            public string Nivel { get; set; }
+            [PrimaryKey, AutoIncrement, Column("_usuarioid")]
+            public int UsuarioId { get; set; }
+            [MaxLength(30)]
+            public string Nome { get; set; }
+            [MaxLength(30)]
+            public string Cargo { get; set; }
+            [MaxLength(30)]
+            public string Usuario { get; set; }
+            [MaxLength(30)]
+            public string Senha { get; set; }
+           
+            public DateTime Data { get; set; }
+            
+
+
         }
+
 
         [Table("Cargos")]
         public class Cargos
@@ -302,10 +322,10 @@ namespace AppDoHotel
             public string endereco { get; set; }
             [MaxLength(20)]
             public string telefone { get; set; }
-
-            public Cargos cargo { get; set; }
-
-            public DateTime Funcionarioo { get; set; }
+            [MaxLength(20)]
+            public string cargo { get; set; }
+            [MaxLength(20)]
+            public string Funcionarioo { get; set; }
 
 
         }
@@ -319,8 +339,8 @@ namespace AppDoHotel
             public string Descricao { get; set; }
             [MaxLength(10)]
             public double Valor { get; set; }
-
-            public Funcionarios Funcionario { get; set; }
+            [MaxLength(20)]
+            public string Funcionario { get; set; }
 
             public DateTime Data { get; set; }
 
@@ -498,25 +518,6 @@ namespace AppDoHotel
 
         }
 
-        [Table("Usuarios")]
-        public class Usuarios
-        {
-            [PrimaryKey, AutoIncrement, Column("_usuarioid")]
-            public int UsuarioId { get; set; }
-            [MaxLength(30)]
-            public string Nome { get; set; }
-            [MaxLength(30)]
-            public string Cargo { get; set; }
-            [MaxLength(30)]
-            public string Usuario { get; set; }
-            [MaxLength(30)]
-            public string Senha { get; set; }
-           
-            public DateTime Data { get; set; }
-            
-
-
-        }
 
 
         [Table("Vendas")]
@@ -539,3 +540,17 @@ namespace AppDoHotel
 
     }
 }
+        //[Table("Users")]
+        //public class Users
+        //{
+        //    [PrimaryKey, AutoIncrement, Column("_uid")]
+        //    public int UId { get; set; }
+        //    [MaxLength(3)]
+        //    public string Username { get; set; }
+        //    [MaxLength(8)]
+        //    public string Password { get; set; }
+        //    [MaxLength(10)]
+        //    public string Status { get; set; }
+        //    [MaxLength(0)]
+        //    public string Nivel { get; set; }
+        //}
