@@ -4,6 +4,8 @@ using Android.Content;
 using Android.Widget;
 using Android.OS;
 using System.Threading;
+using System.Drawing;
+
 namespace AppDoHotel
 {
     [Activity(Label = "Controle de Pragas 1.0", MainLauncher = true)]
@@ -182,7 +184,7 @@ namespace AppDoHotel
 
         }
 
-
+        Image = new Image();
         // Função para validar cadastro
         private void ValidaCadastro()
         {
