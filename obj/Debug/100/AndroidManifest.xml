@@ -204,6 +204,7 @@
       </intent-filter>
     </activity>
     <activity android:label="Menu" android:name="crc64d1251ba317f1a24e.Menu" />
+    <activity android:label="Movimentacoes" android:name="crc64d1251ba317f1a24e.Movimentacoes" />
     <service android:name="crc64396a3fe5f8138e3f.KeepAliveService" />
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Battery Broadcast Receiver" android:name="crc64a0e0a82d0db9a07d.BatteryBroadcastReceiver" />
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Energy Saver Broadcast Receiver" android:name="crc64a0e0a82d0db9a07d.EnergySaverBroadcastReceiver" />

@@ -4,6 +4,9 @@ appdohotel.MainActivity;crc64d1251ba317f1a24e.MainActivity
 AppDoHotel.Menu, AppDoHotel;crc64d1251ba317f1a24e.Menu
 AppDoHotel.Menu;crc64d1251ba317f1a24e.Menu
 appdohotel.Menu;crc64d1251ba317f1a24e.Menu
+AppDoHotel.Movimentacoes, AppDoHotel;crc64d1251ba317f1a24e.Movimentacoes
+AppDoHotel.Movimentacoes;crc64d1251ba317f1a24e.Movimentacoes
+appdohotel.Movimentacoes;crc64d1251ba317f1a24e.Movimentacoes
 AndroidX.Activity.IOnBackPressedDispatcherOwner, Xamarin.AndroidX.Activity;androidx.activity.OnBackPressedDispatcherOwner
 AndroidX.Activity.IOnBackPressedDispatcherOwner;androidx.activity.OnBackPressedDispatcherOwner
 androidx.activity.OnBackPressedDispatcherOwner;androidx.activity.OnBackPressedDispatcherOwner

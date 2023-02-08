@@ -14,9 +14,13 @@ namespace AppDoHotel
     [Activity(Label = "Menu")]
     public class Menu : Activity
     {
+        double totalEntradas, totalSaidas, total;
+
         ImageView ImgUsuario, ImgMov;
 
         TextView TxtUsuarioMenu, TxtCargoMenu, TxtEntrada, TxtSaida, TxtTotal;
+
+        ImageButton ImgGastos, ImgMoviment, ImgCheckIn, ImgReservas;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -24,21 +28,36 @@ namespace AppDoHotel
             // Create your application here
             SetContentView(Resource.Layout.menu);
             ImgUsuario = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgUsuario);
-            ImgMov = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgMov);
+            ImgMov     = FindViewById<Android.Widget.ImageView>(Resource.Id.ImgMov);
+
+            ImgGastos   = FindViewById<Android.Widget.ImageButton>(Resource.Id.ImgGastos);
+            ImgMoviment = FindViewById<Android.Widget.ImageButton>(Resource.Id.ImgMoviment);
+            ImgCheckIn  = FindViewById<Android.Widget.ImageButton>(Resource.Id.ImgCheckIn);
+            ImgReservas = FindViewById<Android.Widget.ImageButton>(Resource.Id.ImgReservas);
 
             TxtUsuarioMenu = FindViewById<Android.Widget.TextView>(Resource.Id.TxtUsuarioMenu);
-            TxtCargoMenu = FindViewById<Android.Widget.TextView>(Resource.Id.TxtCargoMenu);
-            TxtEntrada = FindViewById<Android.Widget.TextView>(Resource.Id.TxtEntrada);
-            TxtSaida = FindViewById<Android.Widget.TextView>(Resource.Id.TxtSaida);
-            TxtTotal = FindViewById<Android.Widget.TextView>(Resource.Id.TxtTotal);
-
+            TxtCargoMenu   = FindViewById<Android.Widget.TextView>(Resource.Id.TxtCargoMenu);
+            TxtEntrada     = FindViewById<Android.Widget.TextView>(Resource.Id.TxtEntrada);
+            TxtSaida       = FindViewById<Android.Widget.TextView>(Resource.Id.TxtSaida);
+            TxtTotal       = FindViewById<Android.Widget.TextView>(Resource.Id.TxtTotal);
+            totalEntradas  = 0.0;
+            totalSaidas    = 0.0;
+            total          = 0.0;
 
             //recuper os parametros
-            string NomeUsuario = Intent.GetStringExtra("Nome");
+            string NomeUsuario  = Intent.GetStringExtra("Nome");
             string CargoUsuario = Intent.GetStringExtra("Cargo");
 
             ImgMov.SetImageResource(Resource.Drawable.Movimentacao);
-            ImgUsuario.SetImageResource(Resource.Drawable.usuario);
+            ImgUsuario.SetImageResource(Resource.Drawable.usuarios);
+
+            ImgGastos.SetImageResource(Resource.Drawable.img_gastos);
+            ImgMoviment.SetImageResource(Resource.Drawable.img_moviment);
+            ImgCheckIn.SetImageResource(Resource.Drawable.img_checkin);
+            ImgReservas.SetImageResource(Resource.Drawable.img_reservas);
+
+            ImgMoviment.Click += ImgMoviment_Click;
+
             TxtUsuarioMenu.Text = "Usuario: " + NomeUsuario;
             TxtCargoMenu.Text = "Cargo: " + CargoUsuario;
 
@@ -48,11 +67,27 @@ namespace AppDoHotel
             Totalizar();
         }
 
+        private void ImgMoviment_Click(object sender, EventArgs e)
+        {
+            StartActivity(typeof(Movimentacoes));
+        }
+
         private void TotalizarEntradas()
         {
             try
             {
                 SQLiteDB db = new SQLiteDB();
+                List<SQLiteDB.Movimentacoes> movimentacoes = db.GetAllMovimentacoes();
+                foreach (var mov in movimentacoes)
+                {
+                    if (mov.Tipo == "Entrada")
+                    {
+                        totalEntradas += mov.Valor;
+                        
+                    }
+                }
+                TxtEntrada.Text = "Entradas " + totalEntradas.ToString("C2");
+                TxtEntrada.SetTextColor(Android.Graphics.Color.DarkGreen);
             }
             catch (Exception)
             {
@@ -64,11 +99,50 @@ namespace AppDoHotel
 
         private void TotalizarSaidas()
         {
-            throw new NotImplementedException();
+            try
+            {
+                SQLiteDB db = new SQLiteDB();
+                List<SQLiteDB.Movimentacoes> movimentacoes = db.GetAllMovimentacoes();
+                foreach (var mov in movimentacoes)
+                {
+                    if (mov.Tipo == "Saída")
+                    {
+                        totalSaidas += mov.Valor;
+
+                    }
+                }
+                TxtSaida.Text = "Saidas " + totalSaidas.ToString("C2");
+                TxtSaida.SetTextColor(Android.Graphics.Color.Red);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         private void Totalizar()
         {
-            throw new NotImplementedException();
+            try
+            {
+                total = totalEntradas - totalSaidas;
+                
+                TxtTotal.Text = "Total " + total.ToString("C2");
+
+                if (total >= 0) 
+                {
+                    TxtTotal.SetTextColor(Android.Graphics.Color.DarkGreen);
+                }
+                else
+                {
+                    TxtTotal.SetTextColor(Android.Graphics.Color.Red);
+                }
+               
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

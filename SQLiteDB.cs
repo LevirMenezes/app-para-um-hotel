@@ -26,42 +26,74 @@ namespace AppDoHotel
                     var db = new SQLiteConnection(dbPath);
 
 
-                }
-                else
-                {
-                    var db = new SQLiteConnection(dbPath);
+                    #region Drops
 
                     db.Query<Cargos>("DROP TABLE IF EXISTS Cargos;");
+
                     db.Query<Detalhes_Vendas>("DROP TABLE IF EXISTS Detalhes_Vendas;");
+
                     db.Query<Fornecedores>("DROP TABLE IF EXISTS Fornecedores;");
+
                     db.Query<Funcionarios>("DROP TABLE IF EXISTS Funcionarios;");
+
                     db.Query<Gastos>("DROP TABLE IF EXISTS Gastos;");
+
                     db.Query<Hospedes>("DROP TABLE IF EXISTS Hospedes;");
+
                     db.Query<Movimentacoes>("DROP TABLE IF EXISTS Movimentacoes;");
+
                     db.Query<Novo_Servico>("DROP TABLE IF EXISTS Novo_Servico;");
+
                     db.Query<Ocupacoes>("DROP TABLE IF EXISTS Ocupacoes;");
+
                     db.Query<Produtos>("DROP TABLE IF EXISTS Produtos;");
+
                     db.Query<Quartos>("DROP TABLE IF EXISTS Quartos;");
+
                     db.Query<Reservas>("DROP TABLE IF EXISTS Reservas;");
+
                     db.Query<Servicos>("DROP TABLE IF EXISTS Servicos;");
+
                     db.Query<Usuarios>("DROP TABLE IF EXISTS Usuarios;");
 
+                    db.Query<Vendas>("DROP TABLE IF EXISTS Vendas;");
+
+                    #endregion 
+
+                    #region Creates
                     db.CreateTable<Cargos>();
+
                     db.CreateTable<Detalhes_Vendas>();
+
                     db.CreateTable<Fornecedores>();
+
                     db.CreateTable<Funcionarios>();
+
                     db.CreateTable<Gastos>();
+
                     db.CreateTable<Hospedes>();
+
                     db.CreateTable<Movimentacoes>();
+
                     db.CreateTable<Novo_Servico>();
+
                     db.CreateTable<Ocupacoes>();
+
                     db.CreateTable<Produtos>();
+
                     db.CreateTable<Quartos>();
+
                     db.CreateTable<Reservas>();
+
                     db.CreateTable<Servicos>();
+
                     db.CreateTable<Usuarios>();
 
-                    
+                    db.CreateTable<Vendas>();
+
+                    #endregion
+
+                    #region Inserts de criacao
 
                     db.Query<Cargos>(@"INSERT INTO  Cargos (cargo) VALUES
 ('Manobrista'),
@@ -101,7 +133,6 @@ namespace AppDoHotel
 ('Hugo','121.212.121-21','Rua A','(55) 54545-4560','Gerente','2019-05-06 00:00:00'),
 ('Pedro','123.659.999-99','Rua 5','(56) 22222-2222','Manobrista','2019-05-06 00:00:00');");
 
-
                     db.Query<Gastos>(@"INSERT INTO  Gastos (descricao , valor , funcionario , data ) VALUES
 ('Compra de Produtos',30.00,'Hugo Freitas','2019-05-13 00:00:00'),
 ('Gasto com Cadeira',90.00,'Hugo Freitas','2019-05-13 00:00:00'),
@@ -118,37 +149,34 @@ namespace AppDoHotel
 ");
 
                     db.Query<Movimentacoes>(@"INSERT INTO  Movimentacoes (tipo , movimento , valor , funcionario , data , id_movimento ) VALUES
-('Saída','Gasto',90.00,'Hugo Freitas','2019-05-13 00:00:00',2),
-('Entrada','Venda',40.00,'Hugo Freitas','2019-05-13 00:00:00',18),
-('Entrada','Serviço',150.00,'Hugo Freitas','2019-05-14 00:00:00',1),
-('Entrada','Serviço',150.00,'Hugo Freitas','2019-05-14 00:00:00',4),
-('Entrada','Serviço',90.00,'Hugo Freitas','2019-05-14 00:00:00',5),
-('Saída','Gasto',450.00,'Hugo Freitas','2019-05-14 00:00:00',5),
-('Entrada','Serviço',90.00,'Hugo Freitas','2019-05-14 00:00:00',6),
-('Entrada','Reserva',450.00,'Hugo Freitas','2019-05-16 00:00:00',5),
-('Entrada','Reserva',450.00,'Hugo Freitas','2019-05-16 00:00:00',7),
-('Entrada','Reserva',900.00,'Hugo Freitas','2019-05-16 00:00:00',9),
-('Entrada','Reserva',450.00,'Hugo Freitas','2019-05-16 00:00:00',10),
-('Entrada','Reserva',1000.00,'Hugo Freitas','2019-05-20 00:00:00',17),
-('Entrada','Reserva',450.00,'Hugo Freitas','2019-05-20 00:00:00',18),
-('Entrada','Reserva',600.00,'Hugo Freitas','2019-05-20 00:00:00',19),
-('Saída','Gasto',30.00,'Hugo Freitas','2019-05-20 00:00:00',6),
-('Entrada','Reserva',450.00,'Hugo Freitas','2019-05-20 00:00:00',22),
-('Entrada','Reserva',450.00,'Hugo Freitas','2019-05-21 00:00:00',25),
-('Entrada','Venda',24.00,'Hugo Freitas','2019-05-21 00:00:00',19),
-('Saída','Gasto',600.00,'Hugo Freitas','2019-05-21 00:00:00',7),
-('Entrada','Reserva',400.00,'Hugo Freitas','2019-05-21 00:00:00',28),
-('Entrada','Venda',40.00,'Hugo Freitas','2019-05-21 00:00:00',20),
-('Saída','Gasto',40.00,'Hugo Freitas','2019-05-21 00:00:00',8);");
+('Saída','Gasto',90.00,'Hugo Freitas', '08/02/2023',2),
+('Entrada','Venda',40.00,'Hugo Freitas','13/05/2019',18),
+('Entrada','Serviço',150.00,'Hugo Freitas','14/05/2019',1),
+('Entrada','Serviço',150.00,'Hugo Freitas','14/05/2019',4),
+('Entrada','Serviço',90.00,'Hugo Freitas','14/05/2019',5),
+('Saída','Gasto',450.00,'Hugo Freitas','14/05/2019',5),
+('Entrada','Serviço',90.00,'Hugo Freitas','14/05/2019',6),
+('Entrada','Reserva',450.00,'Hugo Freitas','16/05/2019',5),
+('Entrada','Reserva',450.00,'Hugo Freitas','16/05/2019',7),
+('Entrada','Reserva',900.00,'Hugo Freitas','16/05/2019',9),
+('Entrada','Reserva',450.00,'Hugo Freitas','16/05/2019',10),
+('Entrada','Reserva',1000.00,'Hugo Freitas','20/05/2019',17),
+('Entrada','Reserva',450.00,'Hugo Freitas','20/05/2019',18),
+('Entrada','Reserva',600.00,'Hugo Freitas','20/05/2019',19),
+('Saída','Gasto',30.00,'Hugo Freitas','20/05/2019',6),
+('Entrada','Reserva',450.00,'Hugo Freitas','20/05/2019',22),
+('Entrada','Reserva',450.00,'Hugo Freitas','21/05/2019',25),
+('Entrada','Venda',24.00,'Hugo Freitas','21/05/2019',19),
+('Saída','Gasto',600.00,'Hugo Freitas','21/05/2019',7),
+('Entrada','Reserva',400.00,'Hugo Freitas','21/05/2019',28),
+('Entrada','Venda',40.00,'Hugo Freitas','21/05/2019',20),
+('Saída','Gasto',40.00,'Hugo Freitas','21/05/2019',8);");
 
                     db.Query<Novo_Servico>(@"INSERT INTO  Novo_Servico (hospede , servico , quarto , valor , funcionario , data ) VALUES
 ('Paola','Cabelereira','101',150.00,'Hugo Freitas','2019-05-12 00:00:00'),
 ('Matheus','Personal Trainner','101',150.00,'Hugo Freitas','2019-05-14 00:00:00'),
 ('Paola','Massagem','203',90.00,'Hugo Freitas','2019-05-14 00:00:00'),
 ('Matheus','Massagem','302',90.00,'Hugo Freitas','2019-05-14 00:00:00');");
-
-
-
 
                     db.Query<Ocupacoes>(@"INSERT INTO  Ocupacoes (id , quarto , data , funcionario , id_reserva ) VALUES
 (150,'101','2019-05-17 00:00:00','Hugo Freitas','20'),
@@ -194,7 +222,6 @@ namespace AppDoHotel
 ('302',300.00,'2'),
 ('303',450.00,'2');");
 
-
                     db.Query<Reservas>(@"INSERT INTO  Reservas ( id , quarto , entrada , saida , dias , valor , nome , telefone , data , funcionario , status , checkin , checkout , pago ) VALUES
 (18,'101','2019-05-18 00:00:00','2019-05-20 00:00:00',3,450.00,'Paloma','(22) 22222-2222','2019-05-20 00:00:00','Hugo Freitas','Confirmada','Sim','Sim','Sim'),
 (20,'101','2019-05-17 00:00:00','2019-05-20 00:00:00',4,600.00,'Marcelo','(22) 65656-5656','2019-05-20 00:00:00','Hugo Freitas','Confirmada','Não','Não','Não'),
@@ -205,10 +232,12 @@ namespace AppDoHotel
 (26,'102','2019-05-19 00:00:00','2019-05-21 00:00:00',3,450.00,'Marcos','(22) 22222-2222','2019-05-21 00:00:00','Hugo Freitas','Confirmada','Não','Sim','Não'),
 (27,'101','2019-05-26 00:00:00','2019-05-29 00:00:00',4,600.00,'Thiago','(55) 65656-6565','2019-05-21 00:00:00','Hugo Freitas','Confirmada','Não','Não','Não'),
 (28,'202','2019-05-21 00:00:00','2019-05-22 00:00:00',2,400.00,'Marcel','(22) 22222-2222','2019-05-21 00:00:00','Hugo Freitas','Confirmada','Sim','Não','Sim');");
+
                     db.Query<Servicos>(@"INSERT INTO  Servicos (nome , valor ) VALUES
 ('Cabelereira',150.00),
 ('Massagem',90.00),
 ('Personal Trainner',75.00);");
+
                     db.Query<Usuarios>("DELETE FROM Usuarios WHERE senha = '123'");
                     db.Query<Usuarios>(@"INSERT INTO  Usuarios ( nome , cargo , usuario , senha , data ) VALUES
                     ('Marcos', 'Recepcionista', 'marcos', '123', '2019-05-06 00:00:00'),
@@ -229,18 +258,10 @@ namespace AppDoHotel
 (19,24.00,'Hugo Freitas','Efetuada','2019-05-21 00:00:00'),
 (20,40.00,'Hugo Freitas','Efetuada','2019-05-21 00:00:00');");
 
-
-
-
-
-
-
-
-
-
-
+                    #endregion
 
                 }
+
 
             }
             catch (Exception)
@@ -307,8 +328,23 @@ namespace AppDoHotel
 
         public void InsertMovimentacoes(Movimentacoes novaMovimentacao)
         {
-            var db = new SQLiteConnection(dbPath);
-            db.Insert(novaMovimentacao);
+            try
+            {
+
+                
+                var db = new SQLiteConnection(dbPath);
+                db.Insert(novaMovimentacao);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
         }
 
         public void InsertNovoServico(Novo_Servico novoServico)
@@ -364,7 +400,7 @@ namespace AppDoHotel
 
         #endregion
 
-        public Usuarios GetUsuario(string usuario, string senha)
+        public Usuarios GetLogin(string usuario, string senha)
         {
             var db = new SQLiteConnection(dbPath);
             Console.WriteLine("Reading data From Table");
@@ -412,26 +448,48 @@ namespace AppDoHotel
             db.Update(usuarios);
         }
 
-        public string GetAllUsers()
+        #region Getalls()
+        public List<Usuarios> GetAllUsers()
         {
             string data = "";
             var db = new SQLiteConnection(dbPath);
 
             Console.WriteLine("Reading data From Table");
-            var table = db.Table<Usuarios>();
+            var table = db.Table<Usuarios>().ToList();
             try
             {
-                foreach (var s in table)
+                //foreach (var s in table)
 
-                    data += s.UsuarioId + "\t" + s.Usuario + "\t" + s.Senha + "\t" + s.Nome + "\t" + s.Cargo + "\t" + s.Data + "\n";
-                return data;
+                //    data += s.UsuarioId + "\t" + s.Usuario + "\t" + s.Senha + "\t" + s.Nome + "\t" + s.Cargo + "\t" + s.Data + "\n";
+                return table;
             }
             catch
             {
-                return "Empty";
+                return null;
             }
         }
 
+        public List<Movimentacoes> GetAllMovimentacoes()
+        {
+
+            var db = new SQLiteConnection(dbPath);
+
+            Console.WriteLine("Reading data From Table");
+            var table = db.Table<Movimentacoes>().ToList();
+            try
+            {
+
+                return table;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Classes Tables
 
         [Table("Usuarios")]
         public class Usuarios
@@ -446,8 +504,8 @@ namespace AppDoHotel
             public string Usuario { get; set; }
             [Column("senha"), MaxLength(30)]
             public string Senha { get; set; }
-            [Column("data")]
-            public DateTime Data { get; set; }
+            [Column("data"), MaxLength(30)]
+            public string Data { get; set; }
 
 
 
@@ -578,8 +636,8 @@ namespace AppDoHotel
             public double Valor { get; set; }
             [Column("funcionario"), MaxLength(20)]
             public string Funcionario { get; set; }
-            [Column("data")]
-            public DateTime Data { get; set; }
+            [MaxLength(30), Column("data")]
+            public string Data { get; set; }
             [Column("id_movimento"), MaxLength(11)]
             public int Id_movimento { get; set; }
 
@@ -645,7 +703,7 @@ namespace AppDoHotel
             public double Valor_Compra { get; set; }
             [Column("data")]
             public DateTime Data { get; set; }
-            
+
 
 
         }
@@ -718,7 +776,7 @@ namespace AppDoHotel
         [Table("Vendas")]
         public class Vendas
         {
-            [Column("id"), PrimaryKey]
+            [PrimaryKey, Column("id")]
             public int Id { get; set; }
             [Column("valor_total"), MaxLength(10)]
             public double Valor_Total { get; set; }
@@ -731,21 +789,9 @@ namespace AppDoHotel
 
         }
 
+        #endregion
+
 
 
     }
 }
-//[Table("Users")]
-//public class Users
-//{
-//    [PrimaryKey, AutoIncrement, Column("_uid")]
-//    public int UId { get; set; }
-//    [MaxLength(3)]
-//    public string Username { get; set; }
-//    [MaxLength(8)]
-//    public string Password { get; set; }
-//    [MaxLength(10)]
-//    public string Status { get; set; }
-//    [MaxLength(0)]
-//    public string Nivel { get; set; }
-//}
