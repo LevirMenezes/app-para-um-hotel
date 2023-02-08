@@ -75,7 +75,7 @@ namespace AppDoHotel
 
 
             // Limpa os campos Usuario e senha e solicita o foco no campo usuario.
-            Limpar();
+            
 
 
             // Button
@@ -175,16 +175,9 @@ namespace AppDoHotel
 
         // Serve para se conectar com o banco.
 
-        private void Limpar()
-        {
+        
 
-            EdtUsername.Text = "";
-            EdtPassword.Text = "";
-            EdtUsername.RequestFocus();
-
-        }
-
-        Image = new Image();
+        
         // Função para validar cadastro
         private void ValidaCadastro()
         {
@@ -289,6 +282,7 @@ namespace AppDoHotel
                 EdtUsername.Text = "";
                 // Caso o campo EdtUsername esteja vazio, uma mensagem é enviada ao usuário para que o preencha.
                 Toast.MakeText(Application.Context, "Preencha o Usuário", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), ToastLength.Short).Show();
                 // O RequestFocues() serve para solicitar o foco no campo que está o invocando.
                 EdtUsername.RequestFocus();
                 return;
@@ -310,21 +304,22 @@ namespace AppDoHotel
             {
 
                 var db = new SQLiteDB();
-                var user = db.GetUsuario(EdtUsername.Text, EdtPassword.Text);
+                // var user = db.GetUsuario(EdtUsername.Text, EdtPassword.Text);
+                var user = db.GetAllUsers();
                 if (user != null)
                 {
 
 
-                    Toast.MakeText(Application.Context, "Logado com Sucesso", ToastLength.Long).Show();
+                    Toast.MakeText(Application.Context, user, ToastLength.Long).Show();
                     //Intent para passar parametros por activity
                     EdtUsername.Text = "";
                     EdtPassword.Text = "";
                     Thread.Sleep(1000);
 
-                    var tela = new Intent(this, typeof(Menu));
-                    tela.PutExtra("Nome", user.Nome);
-                    tela.PutExtra("Cargo", user.Cargo);
-                    StartActivity(tela);
+                    //var tela = new Intent(this, typeof(Menu));
+                    //tela.PutExtra("Nome", user.Nome);
+                    //tela.PutExtra("Cargo", user.Cargo);
+                    // StartActivity(tela);
 
 
 
@@ -333,7 +328,7 @@ namespace AppDoHotel
                 else
                 {
                     Toast.MakeText((Context)Resource.Layout.secundario, "Usuario não cadastrado", ToastLength.Long).Show();
-                    Limpar();
+                    
 
 
 

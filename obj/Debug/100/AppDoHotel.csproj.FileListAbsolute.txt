@@ -352,3 +352,4 @@ C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\usuario.png
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\menu.xml
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\src\crc64d1251ba317f1a24e\Menu.java
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\AppDoHotel.csproj.AssemblyReference.cache
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\movimentacao.png
