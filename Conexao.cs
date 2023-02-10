@@ -15,8 +15,8 @@ using Android.Database.Sqlite;
 using System.Data;
 
 
-//namespace Conexao
-//{
+namespace Conexao
+{
 //    class Database
 //    {
         
@@ -760,4 +760,4 @@ using System.Data;
 //        }
 //        #endregion
 //    }
-//}
+}
