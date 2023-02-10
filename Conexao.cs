@@ -12,7 +12,7 @@ using Android.Widget;
 using System.IO;
 using System.Data;
 using Android.Database.Sqlite;
-//using System.Data;
+using System.Data;
 
 
 //namespace Conexao
