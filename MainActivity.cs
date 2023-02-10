@@ -12,6 +12,7 @@ namespace AppDoHotel
     public class MainActivity : Activity
     {
         #region Variaveis da tela Login
+        Variaveis var = new Variaveis();
 
         // Instancia os ImageView
         ImageView ImgLogo, ImgUsername, ImgPassword;
@@ -317,9 +318,12 @@ namespace AppDoHotel
                     EdtPassword.Text = "";
                     Thread.Sleep(1000);
 
+                    var.nomeUsuario = user.Nome;
+                    var.cargoUsuario = user.Cargo;
+
                     var tela = new Intent(this, typeof(Menu));
-                    tela.PutExtra("Nome", user.Nome);
-                    tela.PutExtra("Cargo", user.Cargo);
+                    tela.PutExtra("Nome", var.nomeUsuario);
+                    tela.PutExtra("Cargo", var.cargoUsuario);
                     StartActivity(tela);
 
 

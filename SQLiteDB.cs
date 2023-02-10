@@ -134,12 +134,12 @@ namespace AppDoHotel
 ('Pedro','123.659.999-99','Rua 5','(56) 22222-2222','Manobrista','2019-05-06 00:00:00');");
 
                     db.Query<Gastos>(@"INSERT INTO  Gastos (descricao , valor , funcionario , data ) VALUES
-('Compra de Produtos',30.00,'Hugo Freitas','2019-05-13 00:00:00'),
-('Gasto com Cadeira',90.00,'Hugo Freitas','2019-05-13 00:00:00'),
-('Concerto de TV',450.00,'Hugo Freitas','2019-05-14 00:00:00'),
-('Compra de Produtos',30.00,'Hugo Freitas','2019-05-20 00:00:00'),
-('Compra de Mesas',600.00,'Hugo Freitas','2019-05-21 00:00:00'),
-('Compra de Produtos',40.00,'Hugo Freitas','2019-05-21 00:00:00');");
+('Compra de Produtos',30.00,'Hugo Freitas','13/05/2019'),
+('Gasto com Cadeira',90.00,'Hugo Freitas','13/05/2019'),
+('Concerto de TV',450.00,'Hugo Freitas','14/05/2019'),
+('Compra de Produtos',30.00,'Hugo Freitas','20/05/2019'),
+('Compra de Mesas',600.00,'Hugo Freitas','21/05/2019'),
+('Compra de Produtos',40.00,'Hugo Freitas','21/05/2019');");
 
                     db.Query<Hospedes>(@"INSERT INTO  Hospedes (nome , cpf , endereco , telefone , funcionario , data ) VALUES
 ('Marcela','000.002.222-22','Rua','(55) 55555-5555','Hugo Freitas','2019-05-13 00:00:00'),
@@ -446,12 +446,27 @@ namespace AppDoHotel
         {
             var db = new SQLiteConnection(dbPath);
             db.Update(usuarios);
+            
+        }
+
+        public void DeleteGasto(Gastos gasto)
+        {
+            var db = new SQLiteConnection(dbPath);
+           
+            db.Delete(gasto);
+        }
+        
+        public void DeleteMovimentacao(Movimentacoes movimento)
+        {
+            var db = new SQLiteConnection(dbPath);
+           
+            db.Delete(movimento);
         }
 
         #region Getalls()
         public List<Usuarios> GetAllUsers()
         {
-            string data = "";
+            
             var db = new SQLiteConnection(dbPath);
 
             Console.WriteLine("Reading data From Table");
@@ -487,6 +502,22 @@ namespace AppDoHotel
             }
         }
 
+
+        public List<Gastos> GetAllGastos()
+        {
+            try
+            {
+                var db = new SQLiteConnection(dbPath);
+
+                var table = db.Table<Gastos>().ToList();
+
+                return table;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         #endregion
 
         #region Classes Tables
@@ -594,8 +625,8 @@ namespace AppDoHotel
             public double Valor { get; set; }
             [Column("funcionario"), MaxLength(20)]
             public string Funcionario { get; set; }
-            [Column("data")]
-            public DateTime Data { get; set; }
+            [Column("data"), MaxLength(30)]
+            public string Data { get; set; }
 
 
         }

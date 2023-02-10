@@ -68,7 +68,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GastosAdapter.cs" />
+    <Compile Include="GastosLIst.cs" />
+    <Compile Include="Variaveis.cs" />
     <Compile Include="Conexao.cs" />
+    <Compile Include="GastosActivity.cs" />
+    <Compile Include="ListViewAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Movimentacoes.cs" />
@@ -184,7 +189,18 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\layout1.xml">
+    <AndroidResource Include="Resources\layout\Item_ListView_Movimentacoes.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Gastos.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Item_ListView_Gastos.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

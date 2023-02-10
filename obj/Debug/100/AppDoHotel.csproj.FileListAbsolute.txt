@@ -8,7 +8,6 @@ C:\Users\tipvh003\Source\Repos\AppDoHotel\bin\Debug\com.companyname.appdohotel-S
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\MonoAndroid,Version=v10.0.AssemblyAttributes.cs
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\build.props
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\adb.props
-C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\AppDoHotel.csproj.AssemblyReference.cache
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_BuildLibraryImportsCache.stamp
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res.flag
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\lp\39\jl\files.cache
@@ -76,6 +75,8 @@ C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\img_checkin
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\img_gastos.jpg
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\drawable\img_reservas.png
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\movimentacoes.xml
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\item_listview_movimentacoes.xml
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\gastos.xml
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\uploadflags.txt
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\resolvedassemblies.hash
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\assets\AppDoHotel.dll
@@ -359,4 +360,8 @@ C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_ConvertResourcesC
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_GenerateJavaStubs.stamp
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\layout1.xml
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\AppDoHotel.csproj.AssemblyReference.cache
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\src\crc64d1251ba317f1a24e\ListaAdapter.java
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\src\crc64d1251ba317f1a24e\GastosAdapter.java
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\android\src\crc64d1251ba317f1a24e\GastosActivity.java
+C:\Users\tipvh003\Source\Repos\AppDoHotel\obj\Debug\100\res\layout\item_listview_gastos.xml

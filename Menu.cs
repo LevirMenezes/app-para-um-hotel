@@ -14,6 +14,7 @@ namespace AppDoHotel
     [Activity(Label = "Menu")]
     public class Menu : Activity
     {
+        Variaveis var = new Variaveis();
         double totalEntradas, totalSaidas, total;
 
         ImageView ImgUsuario, ImgMov;
@@ -45,8 +46,8 @@ namespace AppDoHotel
             total          = 0.0;
 
             //recuper os parametros
-            string NomeUsuario  = Intent.GetStringExtra("Nome");
-            string CargoUsuario = Intent.GetStringExtra("Cargo");
+            var.nomeUsuario = Intent.GetStringExtra("Nome");
+            var.cargoUsuario = Intent.GetStringExtra("Cargo");
 
             ImgMov.SetImageResource(Resource.Drawable.Movimentacao);
             ImgUsuario.SetImageResource(Resource.Drawable.usuarios);
@@ -55,11 +56,11 @@ namespace AppDoHotel
             ImgMoviment.SetImageResource(Resource.Drawable.img_moviment);
             ImgCheckIn.SetImageResource(Resource.Drawable.img_checkin);
             ImgReservas.SetImageResource(Resource.Drawable.img_reservas);
-
+            ImgGastos.Click += ImgGastos_Click;
             ImgMoviment.Click += ImgMoviment_Click;
 
-            TxtUsuarioMenu.Text = "Usuario: " + NomeUsuario;
-            TxtCargoMenu.Text = "Cargo: " + CargoUsuario;
+            TxtUsuarioMenu.Text = "Usuario: " + var.nomeUsuario;
+            TxtCargoMenu.Text = "Cargo: " + var.cargoUsuario;
 
 
             TotalizarEntradas();
@@ -67,9 +68,19 @@ namespace AppDoHotel
             Totalizar();
         }
 
+        private void ImgGastos_Click(object sender, EventArgs e)
+        {
+           
+            var telaGasto = new Intent(this, typeof(GastosActivity));
+            telaGasto.PutExtra("Nome", var.nomeUsuario);
+            StartActivity(telaGasto);
+        }
+
         private void ImgMoviment_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(Movimentacoes));
+            var telaMov = new Intent(this, typeof(Movimentacoes));
+            telaMov.PutExtra("Nome", var.nomeUsuario);
+            StartActivity(telaMov);
         }
 
         private void TotalizarEntradas()

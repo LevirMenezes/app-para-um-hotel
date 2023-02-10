@@ -23,8 +23,7 @@ namespace AppDoHotel
         CalendarView Data;
 
         ListView Lista;
-        string AuxData = DateTime.Today.ToString("dd/MM/yyyy");
-        ArrayAdapter<String> adapterSemDados;
+        private string AuxData = DateTime.Today.ToString("dd/MM/yyyy");
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -38,7 +37,7 @@ namespace AppDoHotel
             TxtEntrada = FindViewById<Android.Widget.TextView>(Resource.Id.TxtEntrada);
             TxtSaida = FindViewById<Android.Widget.TextView>(Resource.Id.TxtSaida);
             TxtTotal = FindViewById<Android.Widget.TextView>(Resource.Id.TxtTotal);
-            
+
 
 
             Lista = FindViewById<Android.Widget.ListView>(Resource.Id.Lista);
@@ -52,7 +51,8 @@ namespace AppDoHotel
 
         private void Data_DateChange(object sender, CalendarView.DateChangeEventArgs e)
         {
-            Lista.SetAdapter(adapterSemDados);
+            ListaAdapter adapterSemDados = new ListaAdapter(this, new List<String>());
+            Lista.Adapter = adapterSemDados;
             string DiaFormatado = (e.DayOfMonth.ToString().Length == 1 ? "0" + e.DayOfMonth.ToString() : e.DayOfMonth.ToString());
             string MesFormatado = ((e.Month + 1).ToString().Length == 1 ? "0" + (e.Month + 1).ToString() : (e.Month + 1).ToString());
             string Ano = e.Year.ToString();
@@ -86,8 +86,8 @@ namespace AppDoHotel
 
                         }
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, Resource.Layout.layout1, ListMov);
-                    Lista.SetAdapter(adapter);
+                    ListaAdapter adapter = new ListaAdapter(this, ListMov);
+                    Lista.Adapter= adapter;
 
 
                 }
